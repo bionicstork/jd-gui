@@ -226,7 +226,12 @@ public class MainView<T extends JComponent & UriGettable> implements UriOpenable
             menu.add(goToAction).setAccelerator(KeyStroke.getKeyStroke('L', menuShortcutKeyMask));
             menu.addSeparator();
             menu.add(backwardAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, InputEvent.ALT_MASK));
+            menu.add(backwardAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, InputEvent.CTRL_MASK));
+            menu.add(backwardAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, menuShortcutKeyMask));
             menu.add(forwardAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, InputEvent.ALT_MASK));
+            menu.add(forwardAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, InputEvent.CTRL_MASK|InputEvent.SHIFT_MASK));
+            menu.add(forwardAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, menuShortcutKeyMask|InputEvent.SHIFT_MASK));
+            
             menu = new JMenu("Search");
             menuBar.add(menu);
             menu.add(searchAction).setAccelerator(KeyStroke.getKeyStroke('S', menuShortcutKeyMask|InputEvent.SHIFT_MASK));
