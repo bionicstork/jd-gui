@@ -231,7 +231,7 @@ public class MainView<T extends JComponent & UriGettable> implements UriOpenable
             menu.add(forwardAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, InputEvent.ALT_MASK));
             menu.add(forwardAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, InputEvent.CTRL_MASK|InputEvent.SHIFT_MASK));
             menu.add(forwardAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, menuShortcutKeyMask|InputEvent.SHIFT_MASK));
-            
+
             menu = new JMenu("Search");
             menuBar.add(menu);
             menu.add(searchAction).setAccelerator(KeyStroke.getKeyStroke('S', menuShortcutKeyMask|InputEvent.SHIFT_MASK));
@@ -355,11 +355,12 @@ public class MainView<T extends JComponent & UriGettable> implements UriOpenable
         return mainFrame;
     }
 
-    public void showFindPanel() {
+    public Box showFindPanel() {
         invokeLater(() -> {
             findPanel.setVisible(true);
             findComboBox.requestFocus();
         });
+        return findPanel;
     }
 
     public void setFindBackgroundColor(boolean wasFound) {

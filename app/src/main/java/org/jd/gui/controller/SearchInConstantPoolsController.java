@@ -68,7 +68,7 @@ public class SearchInConstantPoolsController implements IndexesChangeListener {
         };
     }
 
-    public void show(Collection<Future<Indexes>> collectionOfFutureIndexes, Consumer<URI> openCallback) {
+    public void show(Collection<Future<Indexes>> collectionOfFutureIndexes, Consumer<URI> openCallback, String pattern) {
         // Init attributes
         this.collectionOfFutureIndexes = collectionOfFutureIndexes;
         this.openCallback = openCallback;
@@ -80,7 +80,7 @@ public class SearchInConstantPoolsController implements IndexesChangeListener {
             indexesHashCode = hashCode;
         }
         // Show
-        searchInConstantPoolsView.show();
+        searchInConstantPoolsView.showPattern(pattern);
     }
 
     @SuppressWarnings("unchecked")

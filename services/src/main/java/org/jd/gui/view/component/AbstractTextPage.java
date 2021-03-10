@@ -10,14 +10,12 @@ package org.jd.gui.view.component;
 import org.fife.ui.rsyntaxtextarea.*;
 import org.fife.ui.rsyntaxtextarea.folding.FoldManager;
 import org.fife.ui.rtextarea.*;
-import org.jd.gui.api.feature.ContentSearchable;
-import org.jd.gui.api.feature.LineNumberNavigable;
-import org.jd.gui.api.feature.PreferencesChangeListener;
-import org.jd.gui.api.feature.UriOpenable;
+import org.jd.gui.api.feature.*;
 import org.jd.gui.util.exception.ExceptionUtil;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -30,7 +28,7 @@ import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AbstractTextPage extends JPanel implements LineNumberNavigable, ContentSearchable, UriOpenable, PreferencesChangeListener {
+public class AbstractTextPage extends JPanel implements LineNumberNavigable, ContentSearchable, UriOpenable, PreferencesChangeListener, TextAreaAcquirer {
     protected static final String FONT_SIZE_KEY = "ViewerPreferences.fontSize";
 
     protected static final ImageIcon COLLAPSED_ICON = new ImageIcon(AbstractTextPage.class.getClassLoader().getResource("org/jd/gui/images/plus.png"));
@@ -146,6 +144,9 @@ public class AbstractTextPage extends JPanel implements LineNumberNavigable, Con
     public JScrollPane getScrollPane() {
         return scrollPane;
     }
+
+    @Override
+    public JTextComponent getTextArea() { return textArea; }
 
     public void setText(String text) {
         textArea.setText(text);

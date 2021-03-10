@@ -333,6 +333,11 @@ public class SearchInConstantPoolsView<T extends DefaultMutableTreeNode & Contai
         });
     }
 
+    public void showPattern(String pattern) {
+        this.show();
+        searchInConstantPoolsEnterTextField.setText(pattern);
+    }
+
     public boolean isVisible() { return searchInConstantPoolsDialog.isVisible(); }
 
     public String getPattern() { return searchInConstantPoolsEnterTextField.getText(); }

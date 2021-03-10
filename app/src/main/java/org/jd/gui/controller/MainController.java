@@ -31,6 +31,7 @@ import org.jd.gui.util.exception.ExceptionUtil;
 import org.jd.gui.util.net.UriUtil;
 import org.jd.gui.util.swing.SwingUtil;
 import org.jd.gui.view.MainView;
+import org.jd.gui.view.component.panel.TabbedPanel;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -301,7 +302,9 @@ public class MainController implements API {
 
     protected void onFind() {
         if (currentPage instanceof ContentSearchable) {
-            mainView.showFindPanel();
+            Box findPanel = mainView.showFindPanel();
+            JComboBox findField = (JComboBox)findPanel.getComponent(1);
+            ((JTextField)findField.getEditor().getEditorComponent()).setText(getSelectedText());
         }
     }
 
@@ -335,8 +338,17 @@ public class MainController implements API {
         }
     }
 
+    protected String getSelectedText() {
+        JComponent comp = mainView.getSelectedMainPanel();
+        if (comp.getComponents().length == 0) {
+            return "";
+        }
+        String pattern = ((TextAreaAcquirer)((TabbedPanel)((JSplitPane)comp.getComponents()[0]).getRightComponent()).getTabbedPane().getSelectedComponent()).getTextArea().getSelectedText();
+        return pattern != null ? pattern : "";
+    }
+
     protected void onSearch() {
-        searchInConstantPoolsController.show(getCollectionOfFutureIndexes(), uri -> openURI(uri));
+        searchInConstantPoolsController.show(getCollectionOfFutureIndexes(), uri -> openURI(uri), getSelectedText());
     }
 
     protected void onFindPrevious() {
